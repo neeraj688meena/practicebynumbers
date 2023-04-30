@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+Practice by Numbers - Progamming Challenge
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+PLEASE SAVE AND/OR FORK THE PROJECT TO MAKE SURE YOUR WORK PERSISTS.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+You will find an image (Example.png) of our current home page in src/assets.
 
-### `npm start`
+All of the data and ID mappings have been provided to recreate this home page and all of its implied functionality.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Please build as much of the page shown in the Example.png file as possible in the allotted 24 hour testing period.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+When you have completed the task and saved your work, please provide us with your sandbox url that can be found by clicking share > copy link in the top right hand corner of the page.
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+REQUIREMENTS:
 
-### `npm run build`
+The home page consists of three main sections: A hero panel, an activity section, and a data table.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+-- The hero panel includes a welcome banner, a general information section, three quick nav links, and a hero image:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    - The href attribute for each link can be left blank and the information section can be hardcoded.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+-- The activity section contains two lists and three sets of filter controls:
 
-### `npm run eject`
+    - The action needed and notifications data can be found in the data/actions.json and data/notifications.json files respectively
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    - Helper functions and ID maps for rendering the colorful name avatar, category tag, and action/notification description can be found in utility.js and constants.js
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+    - The filter activity controls on the left allow the user to simultaneously filter both lists based on the event_type attribute of each item
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    - The notifications controls (pending, ignored, completed, all) allow the user to filter only the actions needed list by the status attribute of each item
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    - The notifications controls (unread, all) allow the user to filter only the notifications list by the status attribute of each item
 
-## Learn More
+    - The checkmark and X buttons on the action needed items allow users to change the item status (this change does not need to persist through page reload)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    Extra Credit:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    - Lazy load the action needed and notifications items on scroll in batches of 20 records with an initial page load of 20 records effectively creating infinite scroll
 
-### Code Splitting
+-- The data table displays a list of payments made during the month of Novermber in 2017
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    - The raw data and ID mappings can be found in data/table.json
 
-### Analyzing the Bundle Size
+    - The data should be grouped by date and paytype_id, and the amount should be summed for all similar objects. This should result in a total amount for each different paytype_id for each day.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    - The data transform should then be turned into a function that allows the user to run this same roll up logic for either the paytype_id, employee_type_id, or provider_id attribute. This should result in a total amount for the selected ID attribute for each distinct day.
 
-### Making a Progressive Web App
+    - The resulting data should be displayed in the table and the table controls should allow the user to pivot the data around the selected ID attrribute
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+    - Group by paytype_id Example:
 
-### Advanced Configuration
+      Sample data from data/table.json:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+      {
+        "paytype_id": 4,
+        "amount": 1500.5,
+        "date": "2017-11-01",
+        "provider_id": "AA",
+        "employee_type_id": 1
+      },
+      {
+        "paytype_id": 4,
+        "amount": 74,
+        "date": "2017-11-01",
+        "provider_id": "AB",
+        "employee_type_id": 2
+      }
 
-### Deployment
+      Resulting row in data table:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+      {
+        "paytype_id": 4,
+        "amount": 1574.5,
+        "date": "2017-11-01",
+      }
